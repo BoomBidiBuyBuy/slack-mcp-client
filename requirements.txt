@@ -1,0 +1,12 @@
+langchain
+langchain_openai
+langchain-mcp-adapters
+langgraph
+
+langfuse
+
+slack_bolt
+
+openai
+aiohttp
+python-dotenv

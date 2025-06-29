@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "OMD-Setup-Instance": {
+      "transport": "sse",
+      "url": "http://1.2.3.4:8080/sse"
+    }
+  }
+}
