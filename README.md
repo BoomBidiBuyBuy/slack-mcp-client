@@ -1,6 +1,7 @@
 # slack-mcp-client
 
 A Python-based Slack bot integrating MCP functionality using LangChain and the OpenAI API.
+The slack client also contains it's own MCP server that allows to add other MCP endpoints dynamically
 
 The slack integration is implemented using the Slack Bolt API.
 
@@ -28,7 +29,7 @@ The slack integration is implemented using the Slack Bolt API.
 5. **Start the bot**
    Run the main script:
    ```bash
-   python3 slack.py
+   python3 main.py
    ```
 
 6. **Interact via Slack**

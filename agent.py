@@ -1,6 +1,3 @@
-"""
-Example of a custom LangGraph graph with MCP tools.
-"""
 import asyncio
 import json
 import os
@@ -13,8 +10,10 @@ from langgraph.checkpoint.memory import InMemorySaver
 
 from langchain_openai import ChatOpenAI
 
+from mcp_app import load_mcp_servers
 
-def build_agent():
+
+def build_agent(custom_mcp_servers):
     """
     Builds an OpenAI-based agent using the LangChain framework,
     integrated with MCP servers listed in the `mcp-servers.json` file.
@@ -22,11 +21,6 @@ def build_agent():
     The agent uses an in-memory saver to retain the history
     of the conversation during runtime.
     """
-
-    def load_mcp_servers_json():
-        with open("mcp-servers.json") as f:
-            return json.load(f)
-
     llm = ChatOpenAI(
         temperature=0,
         streaming=False,
@@ -34,9 +28,9 @@ def build_agent():
         api_key=os.environ.get("OPENAI_API_KEY", None)
     )
 
-    mcp_servers = load_mcp_servers_json() 
+    mcp_servers = load_mcp_servers(custom_mcp_servers)
 
-    client = MultiServerMCPClient(mcp_servers['mcpServers'])
+    client = MultiServerMCPClient(mcp_servers)
 
     # get tools
     tools = asyncio.run(client.get_tools())

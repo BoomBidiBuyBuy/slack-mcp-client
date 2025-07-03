@@ -9,4 +9,9 @@ slack_bolt
 
 openai
 aiohttp
+
+# mcp
+mcp>=1.6.0
+mcp[cli]
+
 python-dotenv

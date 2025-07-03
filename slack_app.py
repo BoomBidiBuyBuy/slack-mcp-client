@@ -5,11 +5,12 @@ import logging
 import time
 
 from agent import build_agent
+from mcp_app import custom_mcp_servers, load_mcp_servers
 
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 
-dotenv.load_dotenv()
+
 logging.basicConfig(level=logging.INFO)
 
 
@@ -41,7 +42,7 @@ def any_message_handler(message, say, context, logger):
     # messages independently and asynchronously
     # (note that conversation history will be lost, if you want to keep it
     # then you need to re-use an agent instance)
-    agent = build_agent()
+    agent = build_agent(custom_mcp_servers)
 
     response = asyncio.run(
             agent.ainvoke(
@@ -56,6 +57,5 @@ def any_message_handler(message, say, context, logger):
     )
 
 
-# Start the app
-if __name__ == "__main__":
+def run_slack_app():
     SocketModeHandler(app, os.environ["SLACK_APP_TOKEN"]).start()
