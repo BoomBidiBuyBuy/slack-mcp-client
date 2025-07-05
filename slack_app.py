@@ -10,6 +10,8 @@ from mcp_app import custom_mcp_servers, load_mcp_servers
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 
+from langfuse_common import langfuse_handler
+
 
 logging.basicConfig(level=logging.INFO)
 
@@ -44,10 +46,20 @@ def any_message_handler(message, say, context, logger):
     # then you need to re-use an agent instance)
     agent = build_agent(custom_mcp_servers)
 
+    callbacks = []
+    if langfuse_handler:
+        logger.info(f"Langfuse integration is set up")
+        callbacks.append(langfuse_handler)
+    else:
+        logger.info(f"Langfuse integration is not set up")
+
     response = asyncio.run(
             agent.ainvoke(
                 {"messages": [{"role": "user", "content": message_text}]},
-                {"configurable": {"thread_id": user_id}}
+                {
+                    "callbacks": callbacks,
+                    "configurable": {"thread_id": user_id}
+                }
             )
     )
 
