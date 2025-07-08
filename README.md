@@ -7,17 +7,15 @@ The slack integration is implemented using the Slack Bolt API.
 
 ## Installation
 
-> **Note:** This project requires **Python 3.11** or higher.
+> **Note:** This project requires **Python 3.12** or higher.
 
 1. **Configure your Slack bot**  
    Set up a bot on Slack and ensure it has the necessary permissions.
 
-2. **Set up the virtual environment**  
-   Create and activate a virtual environment, then install dependencies using the `requirements.txt` file:
+2. **Set your environment**  
+   Set up your environment using the `uv` tool
    ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   pip install -r requirements.txt
+   uv sync
    ```
 
 3. **Configure environment variables**
@@ -29,7 +27,7 @@ The slack integration is implemented using the Slack Bolt API.
 5. **Start the bot**
    Run the main script:
    ```bash
-   python3 main.py
+   uv run main.py
    ```
 
 6. **Interact via Slack**

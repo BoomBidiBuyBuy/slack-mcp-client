@@ -1,0 +1,18 @@
+[project]
+name = "slack-mcp"
+version = "0.1.0"
+description = "Implements the slack MCP integration using underlying LLM agent"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiohttp>=3.12.13",
+    "langchain>=0.3.26",
+    "langchain-mcp-adapters>=0.1.8",
+    "langchain-openai>=0.3.27",
+    "langfuse<3",
+    "langgraph>=0.5.1",
+    "mcp[cli]>=1.6.0",
+    "openai>=1.93.1",
+    "python-dotenv>=1.1.1",
+    "slack-bolt>=1.23.0",
+]
